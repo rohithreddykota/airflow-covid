@@ -2,7 +2,7 @@
 
 - Step 1: Run Docker compose
 ```
-$docker-compose -f docker-compose-LocalExecutor up
+$docker-compose -f docker-compose up
 ```
 
 - Step 2: Add `Staging postgres` connection
