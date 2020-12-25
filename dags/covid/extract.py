@@ -11,7 +11,10 @@ DEFAULT_ARGS = {
     'email_on_failure': False,
     'email_on_retry': False,
     'start_date': datetime(2020,12,23),
-    'schedule_interval': '@daily'
+    'schedule_interval': '@daily',
+    'max_active_runs': 1,
+    'retries': 3,
+    'retry_delay': timedelta(minutes=1)
 }
 
 DAG_ID = 'covid'
@@ -19,7 +22,7 @@ DAG_ID = 'covid'
 with DAG(dag_id=DAG_ID, default_args=DEFAULT_ARGS) as dag:
     with open('/usr/local/airflow/dags/covid/sqls/ddl_covid_timeseries.sql', 'r') as f:
         sql = f.read()
-    create_table_if_not_exists = PostgresOperator(task_id='check_table', postgres_conn_id='staging' ,sql=sql)
+    create_table_if_not_exists = PostgresOperator(task_id='check_table', postgres_conn_id='postgres_staging' ,sql=sql)
 
     extract = PythonOperator(
         task_id='extract',
@@ -44,7 +47,7 @@ with DAG(dag_id=DAG_ID, default_args=DEFAULT_ARGS) as dag:
 
     with open('/usr/local/airflow/dags/covid/sqls/target_load.sql', 'r') as f:
         sql = f.read()
-    target_load = PostgresOperator(task_id='target_load', postgres_conn_id='staging', sql=sql)
+    target_load = PostgresOperator(task_id='target_load', postgres_conn_id='postgres_staging', sql=sql)
 
     create_table_if_not_exists >> stage_load
     extract >> transform >> stage_load >> target_load
