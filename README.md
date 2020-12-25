@@ -16,7 +16,7 @@ Goto `localhost:8088`: Admin > Connection and add new connection as follows
     Password        : staging
     Port            : 5432
 ```
-[Connection Info](https://github.com/rohithreddykota/airflow-covid/blob/master/.github-meta/Screenshot%202020-12-25%20at%208.35.38%20PM.png)
+![Connection Info](https://github.com/rohithreddykota/airflow-covid/blob/master/.github-meta/Screenshot%202020-12-25%20at%208.35.38%20PM.png)
 
 - Step 3: Turn on the `Covid` DAG
 
@@ -27,4 +27,4 @@ SELECT * FROM covid_time_series
 ```
 
 ### Dag - Graph View
-[Dag Graph View](https://github.com/rohithreddykota/airflow-covid/blob/master/.github-meta/Screenshot%202020-12-25%20at%208.12.56%20PM%20(2).png)
+![Dag Graph View](https://github.com/rohithreddykota/airflow-covid/blob/master/.github-meta/Screenshot%202020-12-25%20at%208.12.56%20PM%20(2).png)
