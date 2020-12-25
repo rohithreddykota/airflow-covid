@@ -10,6 +10,6 @@ CREATE TABLE IF NOT EXISTS covid_time_series
   tested        INT8
 );
 
-DROP TABLE if exists temp_covid_time_series;
+DROP TABLE IF EXISTS temp_covid_time_series;
 
 COMMIT;
